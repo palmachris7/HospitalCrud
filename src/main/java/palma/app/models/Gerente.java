@@ -13,33 +13,35 @@ import javax.persistence.Table;
 public class Gerente {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment 
-	private Integer idGerente;
-	private String desGerente;
-	private Date fechaRegistro;
+	private Integer idgerente;
+	private String descgerente;
+	private Date fecharegistro;
     
-    public Integer getIdGerente() {
-        return idGerente;
+    public Integer getIdgerente() {
+        return idgerente;
     }
-    public void setIdGerente(Integer idGerente) {
-        this.idGerente = idGerente;
+    public void setIdgerente(Integer idgerente) {
+        this.idgerente = idgerente;
     }
-    public String getDesGerente() {
-        return desGerente;
+    public String getDescgerente() {
+        return descgerente;
     }
-    public void setDesGerente(String desGerente) {
-        this.desGerente = desGerente;
+    public void setDescgerente(String descgerente) {
+        this.descgerente = descgerente;
     }
-    public Date getFechaRegistro() {
-        return fechaRegistro;
+    public Date getFecharegistro() {
+        return fecharegistro;
     }
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    public void setFecharegistro(Date fecharegistro) {
+        this.fecharegistro = fecharegistro;
     }
     @Override
     public String toString() {
-        return "Gerente [desGerente=" + desGerente + ", fechaRegistro=" + fechaRegistro + ", idGerente=" + idGerente
+        return "Gerente [descgerente=" + descgerente + ", fecharegistro=" + fecharegistro + ", idgerente=" + idgerente
                 + "]";
     }
+    
+    
 
 	
 }
