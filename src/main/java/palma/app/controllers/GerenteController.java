@@ -23,7 +23,7 @@ public class GerenteController {
     @GetMapping("/index")
 	public String mostrarIndex(Model model) {
     	List<Gerente> lista = serviceGerente.buscarTodas();
-    	model.addAttribute("GERENTES", lista);
+    	model.addAttribute("gerentes", lista);
 		System.out.println("Gerentes"+lista);
 		return "gerentes/listGerentes";
 	}
@@ -31,7 +31,7 @@ public class GerenteController {
 	@GetMapping("/indexPaginate")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
 		Page<Gerente> lista = serviceGerente.buscarTodas(page);
-		model.addAttribute("GERENTES", lista);
+		model.addAttribute("gerentes", lista);
 		return "gerentes/listGerentes";
 	}
 }

@@ -42,8 +42,7 @@ public class GerenteServiceImp implements IGerenteService {
 
     @Override
     public Page<Gerente> buscarTodas(Pageable page) {
-        // TODO Auto-generated method stub
-        return null;
+        return gerenteRepo.findAll(page);	
     }
 
 }
