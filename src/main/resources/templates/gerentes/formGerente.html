@@ -24,15 +24,15 @@
       <div class="container"> 
 
         <div class="card">
-          <h4 class="card-header"><strong>Datos de la categoría</strong></h4>              
+          <h4 class="card-header"><strong>Datos del Gerente</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/categorias/save}" th:object="${categoria}" method="post">             
+            <form th:action="@{/gerentes/save}" th:object="${gerente}" method="post">             
               <div class="row">
                 <div class="col-md-6"> 
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="hidden" th:field="*{id}">
-                    <input type="text" class="form-control" th:field="*{nombre}" placeholder="Escriba el nombre de la categoria" required="required">
+                    <input type="hidden" th:field="*{idgerente}">
+                    <input type="text" class="form-control" th:field="*{descgerente}" placeholder="Escriba el nombre completo del Gerente" required="required">
                   </div>
                 </div>                
               </div> 
@@ -40,7 +40,7 @@
                 <div class="col-md-6"> 
                   <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <textarea class="form-control" th:field="*{descripcion}" rows="2"></textarea>
+                    <textarea class="form-control" th:field="*{fecharegistro}" rows="2"></textarea>
                   </div> 
                 </div>                
               </div> 
