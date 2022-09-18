@@ -19,13 +19,13 @@ public class GerenteServiceImp implements IGerenteService {
 
     @Override
     public void guardar(Gerente gerente) {
-        // TODO Auto-generated method stub
+       
         
     }
 
     @Override
     public void eliminar(Integer idGerente) {
-        // TODO Auto-generated method stub
+        
         
     }
 
@@ -36,7 +36,6 @@ public class GerenteServiceImp implements IGerenteService {
 
     @Override
     public Gerente buscarPorId(Integer idGerente) {
-        // TODO Auto-generated method stub
         return null;
     }
 

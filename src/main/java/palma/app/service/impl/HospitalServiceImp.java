@@ -1,6 +1,7 @@
 package palma.app.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -18,33 +19,33 @@ public class HospitalServiceImp implements IHospitalService {
 	private HospitalRepository hospirepo;
 
     @Override
-    public void guardar(Hospital gerente) {
+    public void guardar(Hospital hospital) {
       
-        
+        hospirepo.save(hospital);
     }
 
     @Override
-    public void eliminar(Integer idGerente) {
-        
-        
+    public void eliminar(Integer idHospital) {
+        hospirepo.deleteById(idHospital);
     }
 
     @Override
     public List<Hospital> buscarTodas() {
-        
-        return null;
+        return hospirepo.findAll();
     }
 
     @Override
-    public Hospital buscarPorId(Integer idGerente) {
-        
-        return null;
+    public Hospital buscarPorId(Integer idHospital) {
+        Optional<Hospital> optional = hospirepo.findById(idHospital);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
     }
 
     @Override
     public Page<Hospital> buscarTodas(Pageable page) {
-     
-        return null;
+        return hospirepo.findAll(page);
     }
 
 

@@ -27,6 +27,7 @@ import palma.app.models.Hospital;
 import palma.app.models.Perfil;
 import palma.app.models.Usuario;
 import palma.app.service.IHospitalService;
+import palma.app.service.ISedeService;
 import palma.app.service.IUsuariosService;
 @Controller
 public class HomeController {
@@ -41,6 +42,9 @@ public class HomeController {
 
 	@Autowired
 	private IHospitalService serviceHospital;
+
+	@Autowired
+	private ISedeService serviceSede;
 
     @GetMapping("/")
 	public String mostrarHome() {
@@ -77,7 +81,7 @@ public class HomeController {
 		usuario.setPassword(pwdEncriptado);	
 		Perfil perfil = new Perfil();
 		usuario.setEstatus(1); 
-		perfil.setIdPerfil(2); // Perfil USUARIO
+		perfil.setIdPerfil(2); 
 		usuario.agregar(perfil);
 		serviceUsuarios.guardar(usuario);	
 		attributes.addFlashAttribute("msg", "Has sido registrado. ¡Ahora puedes ingresar al sistema!");
@@ -107,12 +111,19 @@ public class HomeController {
 	public String buscar(@ModelAttribute("search") Hospital hospital, Model model) {
 		
 		ExampleMatcher matcher  = ExampleMatcher.matching().
-			// and descripcion like '%?%'
-			withMatcher("nombre", ExampleMatcher.GenericPropertyMatchers.contains());
+			withMatcher("nombre", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
 		Example<Hospital> example = Example.of(hospital, matcher);
 		List<Hospital> lista = serviceHospital.buscarByExample(example);
-		model.addAttribute("hospital", lista);
+		model.addAttribute("hospitales", lista);
 		return "home";
+	}
+
+	@ModelAttribute
+	public void setGenericos(Model model){
+		Hospital hospitalSearch = new Hospital();
+		model.addAttribute("search", hospitalSearch);
+		model.addAttribute("hospitales", serviceHospital.buscarTodas());	
+	    model.addAttribute("sedes", serviceSede.buscarTodas());	
 	}
 
 	@InitBinder

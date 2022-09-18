@@ -35,15 +35,20 @@
                     <input type="text" class="form-control" th:field="*{descgerente}" placeholder="Escriba el nombre completo del Gerente" required="required">
                   </div>
                 </div>                
-              </div> 
-              <div class="row">
-                <div class="col-md-6"> 
-                  <div class="form-group">
-                    <label for="descripcion">Descripción</label>
-                    <textarea class="form-control" th:field="*{fecharegistro}" rows="2"></textarea>
-                  </div> 
-                </div>                
-              </div> 
+              </div>   
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="fecha">Fecha de Publicación</label>
+                  <input type="text" class="form-control" name="fecha" th:field="*{fecharegistro}" id="fecha"
+                    placeholder="Fecha de publicacion" required="required">
+                    <script>
+                      $(function () {
+                        $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });
+                      }
+                      );
+                    </script> 
+                </div>
+              </div>
               <hr>
               <button type="submit" class="btn btn-primary">Guardar</button>  
             </form>
@@ -59,6 +64,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
+ 
   </body>
 </html>

@@ -24,48 +24,41 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <!-- <div class="container">
+     <div class="container">
         <h3>Encuentra el hospital.</h3>
         Puedes buscar por sedes y nombre.
         <form th:action="@{/search}" th:object="${search}" method="get" class="form-inline">
           <input type="text" th:field="*{nombre}" class="form-control mb-3" placeholder="Escriba una búsqueda">&nbsp;
-          <select th:field="*{sede.id}" class="custom-select custom-select mb-3">
+          <select th:field="*{sede.idsede}" class="custom-select custom-select mb-3">
             <option th:value="${null}" selected>Seleccione una sede</option>
-            <option th:each="sede : ${sedes}" th:value="${sede.id}" th:text="${sede.nombre}">
+            <option th:each="sede : ${sedes}" th:value="${sede.idsede}" th:text="${sede.descsede}">
             </option>
           </select>&nbsp;
 
           <button type="submit" class="btn btn-primary mb-3">Buscar</button>
         </form>
-      </div> -->
+      </div> -
     </div>
 
     <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
     <div class="container">
-      <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
+      <h2 class="font-weight-bold text-center text-capitalize">Lista de Hospitales </h2>
       <hr>
       <div class="row" th:each="hospital : ${hospitales}">
-        <!-- <div class="col-md-3">
-          <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) }"
-            alt="Generic placeholder image" width="220" height="220">
-        </div> -->
         <div class="col-md-9">
-          <h2 th:text="${hospital.nombre}">Arquitecto</h2>
-          <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${hospital.distrito.nombre}"></span></h6>
+          <h2 th:text="${hospital.nombre}">Nombre</h2>
+          <!-- <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${hospital.distrito.descdistrito}"></span></h6> -->
           <h6 class="card-title"><strong>Publicado: </strong> <span
               th:text="${#dates.format(hospital.fecharegistro, 'dd-MM-yyyy')}"></span></h6>
-
-          <p th:text="${hospital.area}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
-            ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-            malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <!-- <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${vacante.id}) }" role="button">Ver
-              detalles &raquo;</a></p> -->
+          <p th:text="${hospital.area}"></p>
+          
+          <p><a class="btn btn-secondary" th:href="@{/hospitales/view/{id} (id=${hospital.idhospital}) }" role="button">Ver detalles &raquo;</a></p>  
+       
         </div>
       </div>
       <hr>
 
-    </div> <!-- /container -->
-
+    </div> 
   </main>
 
   <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>

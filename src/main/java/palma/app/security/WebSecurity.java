@@ -53,19 +53,19 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 						"/search",
 						"/bcrypt/**",
 						"/about",
-						"/vacantes/view/**")
+						"/hospitales/view/**")
 				.permitAll()
 
 				// Asignar permisos a URLs por ROLES
 				.antMatchers("/solicitudes/create/**",
 						"/solicitudes/save/**")
-				.hasAuthority("Administrador")
+				.hasAuthority("USUARIO")
 				// "/solicitudes/save/**").hasAuthority("Usuario")
 
-				.antMatchers("/solicitudes/**").hasAnyAuthority("Supervisor", "Administrador")
-				.antMatchers("/vacantes/**").hasAnyAuthority("Supervisor", "Administrador")
-				.antMatchers("/categorias/**").hasAnyAuthority("Supervisor", "Administrador")
-				.antMatchers("/Usuarios/**").hasAnyAuthority("Administrador")
+				.antMatchers("/solicitudes/**").hasAnyAuthority("USUARIO", "ADMINISTRADOR")
+				.antMatchers("/vacantes/**").hasAnyAuthority("Supervisor", "ADMINISTRADOR")
+				.antMatchers("/categorias/**").hasAnyAuthority("Supervisor", "ADMINISTRADOR")
+				.antMatchers("/Usuarios/**").hasAnyAuthority("ADMINISTRADOR")
 
 				// Todas las demás URLs de la Aplicación requieren autenticación
 				.anyRequest().authenticated()
