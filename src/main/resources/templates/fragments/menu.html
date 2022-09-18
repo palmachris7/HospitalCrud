@@ -6,16 +6,16 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" sec:authorize="hasAnyAuthority('Supervisor','Administrador')">
+      <li class="nav-item" sec:authorize="hasAnyAuthority('Supervisor','ADMINISTRADOR')">
       <a class="nav-link" th:href="@{/solicitudes/indexPaginate}">Solicitudes</a>
 	   </li>
-	   <li class="nav-item" sec:authorize="hasAnyAuthority('Supervisor','Administrador')">
+	   <li class="nav-item" sec:authorize="hasAnyAuthority('Supervisor','ADMINISTRADOR')">
 	      <a class="nav-link" th:href="@{/vacantes/indexPaginate}">Vacantes</a>
 	   </li>
-	   <li class="nav-item" sec:authorize="hasAnyAuthority('Supervisor','Administrador')">
+	   <li class="nav-item" sec:authorize="hasAnyAuthority('Supervisor','USUARIO')">
 	      <a class="nav-link" th:href="@{/gerentes/indexPaginate}">Gerentes</a>
 	   </li>
-	   <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
+	   <li class="nav-item" sec:authorize="hasAnyAuthority('USUARIO')">
 	      <a class="nav-link" th:href="@{/usuarios/index}" >Usuarios</a>
 	   </li>
 	   <li class="nav-item">

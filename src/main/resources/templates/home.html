@@ -1,74 +1,80 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
 
-    <title>EmpleosApp | Aplicación para Publicar Ofertas de Trabajo.</title>
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <!-- Custom styles for this template -->    
-    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
-    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
 
-  <body>
+  <title>HOSPITAL | Aplicación de manejo de datos en un Hospital.</title>
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+  <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+</head>
 
-	<header th:insert="fragments/menu :: menu-principal"></header>
+<body>
 
-    <main role="main">
+  <header th:insert="fragments/menu :: menu-principal"></header>
 
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <div class="container">
-          <h3>Encuentra el trabajo que andas buscando.</h3>
-          Puedes buscar por descripción y categoría.
-          <form th:action="@{/search}" th:object="${search}" method="get" class="form-inline">
-            <input type="text" th:field="*{descripcion}" class="form-control mb-3" placeholder="Escriba una búsqueda">&nbsp;
-            <select th:field="*{sede.id}" class="custom-select custom-select mb-3">
-              <option th:value="${null}" selected>Seleccione una categoría</option>
-              <option th:each="sede : ${sedes}" 
-					  th:value="${sede.id}"
-					  th:text="${sede.nombre}">
-			  </option>
-            </select>&nbsp;
-            
-            <button type="submit" class="btn btn-primary mb-3">Buscar</button>            
-          </form>
+  <main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <!-- <div class="container">
+        <h3>Encuentra el hospital.</h3>
+        Puedes buscar por sedes y nombre.
+        <form th:action="@{/search}" th:object="${search}" method="get" class="form-inline">
+          <input type="text" th:field="*{nombre}" class="form-control mb-3" placeholder="Escriba una búsqueda">&nbsp;
+          <select th:field="*{sede.id}" class="custom-select custom-select mb-3">
+            <option th:value="${null}" selected>Seleccione una sede</option>
+            <option th:each="sede : ${sedes}" th:value="${sede.id}" th:text="${sede.nombre}">
+            </option>
+          </select>&nbsp;
+
+          <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+        </form>
+      </div> -->
+    </div>
+
+    <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+    <div class="container">
+      <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
+      <hr>
+      <div class="row" th:each="hospital : ${hospitales}">
+        <!-- <div class="col-md-3">
+          <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) }"
+            alt="Generic placeholder image" width="220" height="220">
+        </div> -->
+        <div class="col-md-9">
+          <h2 th:text="${hospital.nombre}">Arquitecto</h2>
+          <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${hospital.distrito.nombre}"></span></h6>
+          <h6 class="card-title"><strong>Publicado: </strong> <span
+              th:text="${#dates.format(hospital.fecharegistro, 'dd-MM-yyyy')}"></span></h6>
+
+          <p th:text="${hospital.area}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus
+            ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
+            malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <!-- <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${vacante.id}) }" role="button">Ver
+              detalles &raquo;</a></p> -->
         </div>
       </div>
-      
-      <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
-      <div class="container"> 
-        <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
-        <hr>        
-        <div class="row" th:each="hospital : ${hospitales}">
-          <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) }" alt="Generic placeholder image" width="220" height="220">            
-          </div>
-          <div class="col-md-9">
-            <h2 th:text="${hospital.nombre}">Arquitecto</h2>
-            <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${vacante.categoria.nombre}"></span></h6>
-            <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${#dates.format(vacante.fecha, 'dd-MM-yyyy')}"></span></h6>
-            <p th:text="${hospital.descripcion}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${vacante.id}) }" role="button">Ver detalles &raquo;</a></p>            
-          </div>
-        </div> 
-        <hr>         
-        
-      </div> <!-- /container -->
+      <hr>
 
-    </main>
-    
-    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+    </div> <!-- /container -->
 
-    <!-- Bootstrap core JavaScript
+  </main>
+
+  <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+  <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-  </body>
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
 </html>

@@ -9,13 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+
 @Data
 @Entity
-@Table(name = "CONDICION")
-public class Condicion {
+@Table(name = "PROVINCIA")
+public class Provincia {
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO) 
-	private Integer idcondicion;
-	private String descondicion;
+	@GeneratedValue(strategy = GenerationType.AUTO) // auto_increment 
+	private Integer idprovincia;
+	private String descprovincia;
 	private Date fecharegistro;
+
+    
 }
