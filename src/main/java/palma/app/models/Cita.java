@@ -18,8 +18,10 @@ import lombok.Data;
 public class Cita {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO) 
-	private Integer iddistrito;
-	private String descdistrito;
+	private Integer idcita;
+	private String descita;
+	private String especialidad;
+	private Integer estado=1;
 	private Date fecharegistro;
 
 	@ManyToOne
