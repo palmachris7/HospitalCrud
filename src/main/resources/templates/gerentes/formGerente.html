@@ -7,11 +7,12 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>EmpleosApp | Creación de Categorías</title>
+    <title>HospitalApp | Creación de Categorías</title>
     <!-- Bootstrap core CSS -->
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+        <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
   </head>
 
@@ -41,12 +42,7 @@
                   <label for="fecha">Fecha de Publicación</label>
                   <input type="text" class="form-control" name="fecha" th:field="*{fecharegistro}" id="fecha"
                     placeholder="Fecha de publicacion" required="required">
-                    <script>
-                      $(function () {
-                        $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });
-                      }
-                      );
-                    </script> 
+               
                 </div>
               </div>
               <hr>
@@ -65,6 +61,11 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
- 
+    <script>
+      $(function () {
+        $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });
+      }
+      );
+    </script> 
   </body>
 </html>

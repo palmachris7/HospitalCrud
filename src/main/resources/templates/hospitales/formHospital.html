@@ -1,0 +1,156 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
+
+  <title>HospitalApp | Ingresar datos de Hospitales</title>
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+        <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
+  <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header th:insert="fragments/menu :: menu-principal"></header>
+
+  <main role="main">
+    <hr>
+    <div class="container">
+
+      <div class="card">
+        <h4 class="card-header"><strong>Datos del Hospital</strong></h4>
+        <div class="card-body">
+          <form th:action="@{/hospitales/save}" th:object="${hospital}" method="post" enctype="multipart/form-data">
+
+            <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+              Por favor corrija los siguientes errores:
+              <ul>
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+              </ul>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="hidden" th:field="*{idhospital}">
+                  <!-- <input type="hidden" th:field="*{imagen}"> -->
+                  <input type="text" th:field="*{nombre}" class="form-control" id="nombre" name="nombre"
+                    placeholder="Nombre del hospital" required="required">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="detalles">Detalles</label>
+                  <input type="text" th:field="*{detalles}" class="form-control" id="detalles" name="detalles" placeholder="Detalles"
+                    required="required">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="sede">Sede</label>
+                  <select class="form-control" name="sede" th:field="*{sede.idsede}" id="sede">
+                    <option th:each="sede : ${sedes}" th:value="${sede.idsede}" th:text="${sede.descsede}">
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="sede">Gerente</label>
+                  <select class="form-control" name="gerente" th:field="*{gerente.idgerente}" id="gerente">
+                    <option th:each="gerente : ${gerentes}" th:value="${gerente.idgerente}" th:text="${gerente.descgerente}">
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="distrito">Distrito</label>
+                  <select class="form-control" name="distrito" th:field="*{distrito.iddistrito}" id="distrito">
+                    <option th:each="distrito : ${distritos}" th:value="${distrito.iddistrito}" th:text="${distrito.descdistrito}">
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="fecha">Fecha de Publicación</label>
+                  <input type="text" class="form-control" name="fecha" th:field="*{fecharegistro}" id="fecha"
+                    placeholder="Fecha de Creacion" required="required">
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="antiguedad">Antiguedad</label>
+                  <input type="text" class="form-control" name="antiguedad" th:field="*{antiguedad}" id="antiguedad"
+                    placeholder="Antiguedad." required="required">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="condicion">Area construida</label>
+                  <input type="text" th:field="*{area}" class="form-control" id="area" name="area" placeholder="Area"
+                    required="required">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="condicion">Condicion</label>
+                  <select class="form-control" name="condicion" th:field="*{condicion.idcondicion}" id="condicion">
+                    <option th:each="condicion : ${condiciones}" th:value="${condicion.idcondicion}" th:text="${condicion.descondicion}">
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <hr>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div> <!-- /container -->
+
+  </main>
+
+  <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script th:src="@{/tinymce/tinymce.min.js}"></script>
+  <script>
+    $(function () {
+      $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });
+    }
+    );
+
+    // tinymce.init({
+    //   selector: '#detalles',
+    //   plugins: "textcolor, table lists code",
+    //   toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
+    //                 | bullist numlist outdent indent | forecolor backcolor table code"
+    // });
+
+  </script>
+</body>
+
+</html>

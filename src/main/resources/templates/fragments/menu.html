@@ -1,3 +1,4 @@
+
 <nav th:fragment="menu-principal" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <a class="navbar-brand" th:href="@{/}">Hospitales Lima</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,17 +8,17 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" sec:authorize="hasAnyAuthority('Supervisor','ADMINISTRADOR')">
+      <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
       <a class="nav-link" th:href="@{/solicitudes/indexPaginate}">Solicitudes</a>
 	   </li>
-	   <li class="nav-item" sec:authorize="hasAnyAuthority('Supervisor','ADMINISTRADOR')">
-	      <a class="nav-link" th:href="@{/vacantes/indexPaginate}">Vacantes</a>
+	   <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+	      <a class="nav-link" th:href="@{/hospitales/indexPaginate}">Hospitales</a>
 	   </li>
 	   <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
 	      <a class="nav-link" th:href="@{/gerentes/indexPaginate}">Gerentes</a>
 	   </li>
 	   <li class="nav-item" sec:authorize="hasAnyAuthority('USUARIO')">
-	      <a class="nav-link" th:href="@{/usuarios/index}" >Usuarios</a>
+	      <a class="nav-link" th:href="@{/citas/index}" >Citas</a>
 	   </li>
 	   <li class="nav-item">
         <a class="nav-link" th:href="@{/about}">Acerca</a>

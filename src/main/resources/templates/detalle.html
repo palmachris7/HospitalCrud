@@ -8,11 +8,12 @@
   <meta name="author" content="">
   <link rel="icon" href="favicon.ico">
 
-  <title>EmpleosApp | Detalles de la Oferta de Trabajo</title>
+  <title>HospitalApp | Detalles de la Oferta de Trabajo</title>
   <!-- Bootstrap core CSS -->
   <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+        <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
   <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
 </head>
 
@@ -26,34 +27,33 @@
 
       <div class="row">
         <div class="col-md-3">
-          <!-- <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) } "
-            alt="Generic placeholder image" width="220" height="220"> -->
+      <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${hospital.imagen}) } "
+            alt="Generic placeholder image" width="280" height="380"> 
         </div>
         <div class="col-md-9">
           <div class="card">
-            <h4 class="card-header">Aplicar para <strong th:text="${hospital.nombre}">Ingeniero Civil</strong></h4>
+            <h4 class="card-header">Más informacíon sobre: <strong th:text="${hospital.nombre}"></strong></h4>
             <div class="card-body">
               <div class="alert alert-danger" role="alert" sec:authorize="isAnonymous()">
-                ¿Quieres sacar una cita? <a th:href="@{/signup}">Regístrate</a>.
+                ¿Quieres sacar una cita? <a th:href="@{/signin}">Ingresa con tu cuenta</a>.
               </div>
-              <h5 class="card-title"><strong>Categoría: </strong> <span th:text="${hospital.sede.descsede}">Nombre la
-                  categoría</span></h5>
-              <h6 class="card-title"><strong>Publicado: </strong> <span
+              <h5 class="card-title"><strong>Sede: </strong> <span th:text="${hospital.sede.descsede}"></span></h5>
+              <h6 class="card-title"><strong>Fecha de Registro: </strong> <span
                   th:text="${#dates.format(hospital.fecharegistro, 'dd-MM-yyyy')}">2019-01-01</span></h6>
-              <h6 class="card-title"><strong>Salario Ofrecido: $</strong><span th:text="${hospital.area}">$9000</span>
+              <h6 class="card-title"><strong>Area Construida: Mtrs </strong><span th:text="${hospital.area}" ></span>
               </h6>
-              <p class="card-text" th:text="${hospital.area}">La descripción corta de la oferta de trabajo</p>
-
+              <h6 class="card-title"><strong>Gerentes encargado: Dr </strong><span th:text="${hospital.gerente.descgerente}" ></span>
+              </h6>
               <div class="card bg-light mb-3">
                 <div class="card-body">
-                  <h5 class="card-title">Detalles de la oferta de trabajo</h5>
-                  <p class="card-text" th:utext="${hospital.area}"></p>
+                  <h5 class="card-title">Detalles del Hospital</h5>
+                  <p class="card-text" th:utext="${hospital.detalles}"></p>
                 </div>
               </div>
               <a sec:authorize="isAuthenticated() and hasAnyAuthority('USUARIO')" class="btn btn-primary"
                 th:href="@{/solicitudes/create/{id} (id=${hospital.idhospital}) }" role="button"
-                title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i>
-                Aplicar</a>
+                title="Quiero sacar cita."><i class="fas fa-file" aria-hidden="true"></i>
+                Sacar cita</a>
             </div>
           </div>
         </div>

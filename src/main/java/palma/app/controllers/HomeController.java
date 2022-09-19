@@ -121,6 +121,7 @@ public class HomeController {
 	@ModelAttribute
 	public void setGenericos(Model model){
 		Hospital hospitalSearch = new Hospital();
+		hospitalSearch.reset();
 		model.addAttribute("search", hospitalSearch);
 		model.addAttribute("hospitales", serviceHospital.buscarTodas());	
 	    model.addAttribute("sedes", serviceSede.buscarTodas());	

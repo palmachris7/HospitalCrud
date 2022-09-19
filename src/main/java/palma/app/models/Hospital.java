@@ -22,6 +22,8 @@ public class Hospital {
 	private Integer antiguedad;
 	private Double area;
     private Date fecharegistro;
+	private String imagen="no-image.jpeg";
+	private String detalles;  
 
     @OneToOne
 	@JoinColumn(name = "iddistrito") 
@@ -38,6 +40,11 @@ public class Hospital {
     @OneToOne
 	@JoinColumn(name = "idsede") 
 	private Sede sede; 
+
+
+	public void reset() {
+		this.imagen=null;
+	}
 
 
 
