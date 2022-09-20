@@ -25,11 +25,47 @@
     <header th:insert="fragments/menu :: menu-principal"></header>
     <main role="main">
 
-        <div class="card">
-            <div class="card text-center">
+        <div class="card fixed-top" >
+            <nav th:fragment="menu-principal" class="navbar navbar-expand-md navbar-white" style="background-color: #e3f2fd;">
+                <a class="navbar-brand" th:href="@{/}">Hospitales App</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                  <ul class="navbar-nav mr-auto">
+                     <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+                       <a class="nav-link" th:href="@{/hospitales/indexPaginate}"><i class="fa-regular fa-hospital"></i> Hospitales</a>
+                     </li>
+                     <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+                      <a class="nav-link" th:href="@{/citas/index}"><i class="fa-solid fa-calendar-check"></i> Solicitudes</a>
+                       </li>
+                     <li class="nav-item" sec:authorize="hasAnyAuthority('USUARIO')">
+                        <a class="nav-link" th:href="@{/citas/index}" ><i class="fa-solid fa-calendar-check"></i> Citas</a>
+                     </li>
+                     <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+                      <a class="nav-link" th:href="@{/usuarios/index}" ><i class="fa-solid fa-users"></i> Usuarios</a>
+                   </li>
+                     <li class="nav-item">
+                      <a class="nav-link" th:href="@{/about}"><i class="fa-solid fa-circle-info"></i> Acerca</a>
+                    </li>                    
+                  </ul>
+                  <div sec:authorize="isAnonymous()">
+                      <a class="btn btn-primary" th:href="@{/index}"><i class="fa-solid fa-key"></i> Ingresar </a>&nbsp;
+                      <a class="btn btn-primary" th:href="@{/signup}"><i class="fa-solid fa-user-plus"></i> Registrarse </a>
+                  </div>	    
+                  <div sec:authorize="isAuthenticated()">
+                      <span class="text-primary">Bienvenido:</span>&nbsp;<span class="text-primary" sec:authentication="name"></span>&nbsp;
+                      <a class="btn btn-primary" th:href="@{/logout}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Salir</a>
+                  </div>    
+                </div>
+              </nav>  
+        
+            <div class="card text-center" style="background-color: #e3f2fd;">
                 <h3>Busqueda de Hospitales.</h3>
                 Puedes buscar por sedes y nombre.
-                <br></br>
+                <br>
                 <div class="d-flex justify-content-center">
                     <form th:action="@{/search}" th:object="${search}" method="get" class="form-inline col-md-8">
 
@@ -48,30 +84,37 @@
                 </div>
             </div>
         </div>
-        <div class="row" th:each="hospital : ${hospitales}">
-            <div class="blog-card">
-                <div class="meta">
-                    <div class="photo">
-                        <a th:href="@{/hospitales/view/{id} (id=${hospital.idhospital}) }">
-                            <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${hospital.imagen}) }"
-                                alt="Generic placeholder image" width="220" height="220">
-                        </a>
-                    </div>
 
-                </div>
-                <div class="description">
-                    <h1 th:text="${hospital.nombre}">Nombre</h1>
-                    <br>
-                    <h2 th:text="${hospital.sede.descsede}">Sede</h2>
-                    <br>
-                    <p th:text="${hospital.distrito.descdistrito}"> </p>
-                    <p class="read-more">
-                        <a th:href="@{/hospitales/view/{id} (id=${hospital.idhospital}) }">Más</a>
-                    </p>
+        <div class="card" style="padding-top: 120px;">
+            <div class="row" th:each="hospital : ${hospitales}">
+                <div class="blog-card">
+                    <div class="meta">
+                        <div class="photo">
+                            <a th:href="@{/hospitales/view/{id} (id=${hospital.idhospital}) }">
+                                <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${hospital.imagen}) }"
+                                    alt="Generic placeholder image" width="220" height="220">
+                            </a>
+                        </div>
+    
+                    </div>
+                    <div class="description">
+                        <h1 th:text="${hospital.nombre}">Nombre</h1>
+                        <br>
+                        <h2 th:text="${hospital.sede.descsede}">Sede</h2>
+                        <br>
+                        <p th:text="${hospital.distrito.descdistrito}"> </p>
+                        <p class="read-more">
+                            <a th:href="@{/hospitales/view/{id} (id=${hospital.idhospital}) }">Más</a>
+                        </p>
+                    </div>
                 </div>
             </div>
+        </div>
+       
+    
 
         </div>
+    </div>
     </main>
     <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
 
