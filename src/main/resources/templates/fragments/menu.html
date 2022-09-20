@@ -1,6 +1,6 @@
 
 <nav th:fragment="menu-principal" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" th:href="@{/}">Hospitales Lima</a>
+  <a class="navbar-brand" th:href="@{/}">Hospitales App</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 	
@@ -8,29 +8,29 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
-      <a class="nav-link" th:href="@{/solicitudes/indexPaginate}">Solicitudes</a>
+	   <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+		 <a class="nav-link" th:href="@{/hospitales/indexPaginate}"><i class="fa-regular fa-hospital"></i> Hospitales</a>
 	   </li>
 	   <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
-	      <a class="nav-link" th:href="@{/hospitales/indexPaginate}">Hospitales</a>
-	   </li>
-	   <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
-	      <a class="nav-link" th:href="@{/gerentes/indexPaginate}">Gerentes</a>
-	   </li>
+		<a class="nav-link" th:href="@{/citas/index}"><i class="fa-solid fa-calendar-check"></i> Solicitudes</a>
+		 </li>
 	   <li class="nav-item" sec:authorize="hasAnyAuthority('USUARIO')">
-	      <a class="nav-link" th:href="@{/citas/index}" >Citas</a>
+	      <a class="nav-link" th:href="@{/citas/index}" ><i class="fa-solid fa-calendar-check"></i> Citas</a>
 	   </li>
+	   <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+		<a class="nav-link" th:href="@{/usuarios/index}" ><i class="fa-solid fa-users"></i> Usuarios</a>
+	 </li>
 	   <li class="nav-item">
-        <a class="nav-link" th:href="@{/about}">Acerca</a>
+        <a class="nav-link" th:href="@{/about}"><i class="fa-solid fa-circle-info"></i> Acerca</a>
       </li>                    
     </ul>
     <div sec:authorize="isAnonymous()">
-		<a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;
-		<a class="btn btn-primary" th:href="@{/signup}">Registrarse</a>
+		<a class="btn btn-primary" th:href="@{/index}"><i class="fa-solid fa-key"></i> Ingresar </a>&nbsp;
+		<a class="btn btn-primary" th:href="@{/signup}"><i class="fa-solid fa-user-plus"></i> Registrarse </a>
 	</div>	    
     <div sec:authorize="isAuthenticated()">
-		<span class="text-light">Bienvenido: </span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;
-		<a class="btn btn-primary" th:href="@{/logout}">Salir</a>
+		<span class="text-light">Bienvenido:</span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;
+		<a class="btn btn-primary" th:href="@{/logout}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Salir</a>
 	</div>    
   </div>
 </nav>     

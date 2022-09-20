@@ -13,9 +13,10 @@
   <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
-        <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
-  <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
+<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body>
@@ -28,8 +29,8 @@
       <div class="card">
         <h4 class="card-header"><strong>Listado de Hospitales en Lima</strong></h4>
         <div class="card-body">
-          <a class="btn btn-primary" th:href="@{/hospitales/create}" title="Crear nueva Oferta de Trabajo"
-            role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>
+          <a class="btn btn-primary btn-block" th:href="@{/hospitales/create}" title="Crear nuevo hospital"
+            role="button"><i class="fa-solid fa-plus"></i> Nuevo Hospital</a>
           <hr>
           <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
 
@@ -40,7 +41,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Antiguedad</th>
                 <th scope="col">Distrito</th>
-                <th scope="col">  Sede    </th>
+                <th scope="col"> Sede </th>
                 <th scope="col">Gerente</th>
                 <th scope="col">Condicion</th>
                 <th scope="col">Fecha de Registro</th>
@@ -61,14 +62,14 @@
                   <span th:case="3" class="badge badge-warning">En Limpieza</span>
                 </td>
                 <td th:text="${#dates.format(hospital.fecharegistro, 'dd-MM-yyyy')}"></td>
-  
+
 
                 <td>
-                  <a th:href="@{/hospitales/edit/{id} (id=${hospital.idhospital}) }" class="btn btn-success btn-sm" role="button"
-                    title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                  <a th:href="@{/hospitales/delete/{id} (id=${hospital.idhospital}) }" onclick="return confirm('¿Estas seguro?')"
-                    class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash"
-                      aria-hidden="true"></i></a>
+                  <a th:href="@{/hospitales/edit/{id} (id=${hospital.idhospital}) }" class="btn btn-success btn-sm"
+                    role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                  <a th:href="@{/hospitales/delete/{id} (id=${hospital.idhospital}) }"
+                    onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button"
+                    title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                 </td>
               </tr>
             </tbody>
@@ -84,7 +85,7 @@
 
         </div>
       </div>
-    </div> 
+    </div>
 
   </main>
 

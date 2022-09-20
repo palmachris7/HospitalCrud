@@ -16,36 +16,46 @@
         <!-- Custom styles for this template -->
         <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
         <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
-        <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+      <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     </head>
 
     <header th:insert="fragments/menu :: menu-principal"></header>
     <main role="main">
+
         <div class="card">
             <div class="card text-center">
                 <h3>Busqueda de Hospitales.</h3>
                 Puedes buscar por sedes y nombre.
-                <form th:action="@{/search}" th:object="${search}" method="get" class="form-inline col-md-12">
-                    <input type="text" th:field="*{nombre}" class="form-control mb-3 col-md-6"
-                        placeholder="Escriba una búsqueda">&nbsp;
-                    <select th:field="*{sede.idsede}" class="custom-select custom-select mb-3 col-md-4">
-                        <option th:value="${null}" selected>Seleccione una sede</option>
-                        <option th:each="sede : ${sedes}" th:value="${sede.idsede}" th:text="${sede.descsede}">
-                        </option>
-                    </select>&nbsp;
-                    <button type="submit" class="btn btn-primary mb-3">Buscar</button>
-                </form>
+                <br></br>
+                <div class="d-flex justify-content-center">
+                    <form th:action="@{/search}" th:object="${search}" method="get" class="form-inline col-md-8">
+
+                        <!-- <input id="check"type="checkbox" name="others" onchange="document.getElementById('custom').disabled = !this.checked" class="medium" checked="true" /> -->
+                        <input id="custom" type="text" th:field="*{nombre}" class="form-control mb-3 col-md-7"
+                            placeholder="Escriba una búsqueda">&nbsp;
+                        <!-- <input id="check"type="checkbox" name="others" onchange="document.getElementById('charstype').disabled = !this.checked" class="medium" checked="true"/> -->
+                        <select th:field="*{sede.idsede}" class="custom-select custom-select mb-3" id="charstype">
+                            <option th:value="${null}" selected>Seleccione una sede</option>
+                            <option th:each="sede : ${sedes}" th:value="${sede.idsede}" th:text="${sede.descsede}">
+                            </option>
+                        </select>&nbsp;
+
+                        <button type="submit" class="btn btn-primary mb-3 col-md-2"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="row" th:each="hospital : ${hospitales}">
             <div class="blog-card">
                 <div class="meta">
                     <div class="photo">
-                        <a th:href="@{/hospitales/view/{id} (id=${hospital.idhospital}) }" >
-                        <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${hospital.imagen}) }"
-                        alt="Generic placeholder image" width="220" height="220">
-                    </a>
+                        <a th:href="@{/hospitales/view/{id} (id=${hospital.idhospital}) }">
+                            <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${hospital.imagen}) }"
+                                alt="Generic placeholder image" width="220" height="220">
+                        </a>
                     </div>
 
                 </div>
@@ -56,7 +66,7 @@
                     <br>
                     <p th:text="${hospital.distrito.descdistrito}"> </p>
                     <p class="read-more">
-                        <a th:href="@{/hospitales/view/{id} (id=${hospital.idhospital}) }" >Más</a>
+                        <a th:href="@{/hospitales/view/{id} (id=${hospital.idhospital}) }">Más</a>
                     </p>
                 </div>
             </div>

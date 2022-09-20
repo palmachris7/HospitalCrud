@@ -13,8 +13,6 @@ import lombok.Data;
 public class Perfil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idperfil")
-	private Integer idPerfil;
-	@Column(name = "perfil")
+	private Integer idperfil;
 	private String perfil;
 }

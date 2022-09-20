@@ -1,26 +1,91 @@
 package palma.app.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import palma.app.models.Cita;
+
 import palma.app.service.ICitaService;
+import palma.app.service.IHospitalService;
+
 
 @Controller
 @RequestMapping("/citas")
 public class CitaController {
     @Autowired
     private ICitaService serviceCita;
+	@Autowired
+    private IHospitalService serviceHospital;
 
+	
+
+	
     @GetMapping("/index")
 	public String mostrarIndex(Model model) {
     	List<Cita> lista = serviceCita.buscarTodas();
     	model.addAttribute("citas", lista);
 		return "citas/listCitas";
 	}
+
+	@GetMapping("/create")
+	public String crear(@ModelAttribute Cita cita) {		
+		return "citas/formCita";
+	}
+
+	@PostMapping("/save")
+	public String guardar(@ModelAttribute Cita cita, BindingResult result, Model model,RedirectAttributes attributes ) {	
+		
+		if (result.hasErrors()){
+			
+			System.out.println("Existieron errores");
+		
+			return "citas/formCita";
+		}
+		
+		serviceCita.guardar(cita);
+		attributes.addFlashAttribute("msg", "Los datos de la cita fueron guardados!");
+	
+		return "redirect:/citas/index";		
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") int idCita, Model model) {		
+		Cita cita = serviceCita.buscarPorId(idCita);			
+		model.addAttribute("cita", cita);
+		return "citas/formCita";
+	}
+
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") int idCita, RedirectAttributes attributes) {
+		serviceCita.eliminar(idCita);
+		attributes.addFlashAttribute("msg", "La cita fue eliminada!.");
+		return "redirect:/citas/index";
+	}
+
+	@ModelAttribute
+	public void setGenericos(Model model){
+		model.addAttribute("hospitales", serviceHospital.buscarTodas());	
+			
+	}
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
+
 }

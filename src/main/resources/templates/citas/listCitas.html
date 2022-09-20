@@ -14,8 +14,9 @@
   <!-- Custom styles for this template -->
   <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
         <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
-  <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body>
@@ -28,8 +29,8 @@
       <div class="card">
         <h4 class="card-header"><strong>Listado de Citas</strong></h4>
         <div class="card-body">
-          <a class="btn btn-primary" th:href="@{/citas/create}" title="Crear cita"
-            role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>
+          <a class="btn btn-primary btn-block" th:href="@{/citas/create}" title="Crear cita"
+            role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva cita</a>
           <hr>
           <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
 
@@ -52,7 +53,6 @@
                 <td th:text="${cita.especialidad}"></td>
                 <td th:text="${#dates.format(cita.fecharegistro, 'dd-MM-yyyy')}"></td>
                 <td th:text="${cita.hospital.nombre}"></td>
-                <td th:text="${hospital.gerente.descgerente}"></td>
                 <td th:switch="${cita.estado}">
                   <span th:case="1" class="badge badge-success">Abierto</span>
                   <span th:case="2" class="badge badge-danger">Cerrado</span>
@@ -68,14 +68,7 @@
               </tr>
             </tbody>
           </table>
-          <!-- <nav th:if="${citas.totalPages > 2}" aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item"><a th:href="@{/hospitales/indexPaginate(page=${hospitales.number - 1})}"
-                  class="page-link">Anterior</a></li>
-              <li class="page-item"><a th:href="@{/hospitales/indexPaginate(page=${hospitales.number + 1})}"
-                  class="page-link">Siguiente</a></li>
-            </ul>
-          </nav> -->
+        
 
         </div>
       </div>

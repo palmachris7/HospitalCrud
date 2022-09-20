@@ -81,7 +81,7 @@ public class HomeController {
 		usuario.setPassword(pwdEncriptado);	
 		Perfil perfil = new Perfil();
 		usuario.setEstatus(1); 
-		perfil.setIdPerfil(2); 
+		perfil.setIdperfil(2); 
 		usuario.agregar(perfil);
 		serviceUsuarios.guardar(usuario);	
 		attributes.addFlashAttribute("msg", "Has sido registrado. ¡Ahora puedes ingresar al sistema!");

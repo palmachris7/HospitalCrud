@@ -1,6 +1,7 @@
 package palma.app.models;
 
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,14 +23,14 @@ import lombok.Data;
 public class Usuario {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idusuario")
+	
 	private Integer idusuario;
-	@Column(name = "username")
 	private String username;
-	@Column(name = "password")
+	private String nombre;
+	private String email;
 	private String password;
-	@Column(name = "estatus")
-	private Integer estatus;	
+	private Integer estatus;
+	private Date fecharegistro;	
 
     @ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "UsuarioPerfil", 

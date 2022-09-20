@@ -1,14 +1,14 @@
 package palma.app.service.impl;
 
 import java.util.List;
-
+import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import palma.app.models.Usuario;
 import palma.app.repository.UsuariosRepository;
 import palma.app.service.IUsuariosService;
-
 @Service
 public class UsuarioServiceImp implements IUsuariosService {
     @Autowired
@@ -34,19 +34,33 @@ public class UsuarioServiceImp implements IUsuariosService {
 
     @Override
     public List<Usuario> buscarRegistrados() {
-        
-        return null;
+        return usuariosRepo.findByFecharegistroNotNull();
     }
 
     @Override
     public Usuario buscarPorId(Integer idUsuario) {
-        
-        return null;
+        Optional<Usuario> optional = usuariosRepo.findById(idUsuario);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
     }
 
     @Override
     public Usuario buscarPorUsername(String username) {
         return usuariosRepo.findByUsername(username);
+    }
+    @Transactional
+    @Override
+    public int bloquear(int idUsuario) {
+        int rows = usuariosRepo.lock(idUsuario);
+		return rows;
+    }
+    @Transactional
+    @Override
+    public int activar(int idUsuario) {
+        int rows = usuariosRepo.unlock(idUsuario);
+		return rows;
     }
     
 }

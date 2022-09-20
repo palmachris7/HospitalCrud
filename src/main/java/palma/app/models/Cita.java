@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -17,7 +18,7 @@ import lombok.Data;
 @Table(name = "CITA")
 public class Cita {
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Integer idcita;
 	private String descita;
 	private String especialidad;
@@ -27,5 +28,9 @@ public class Cita {
 	@ManyToOne
     @JoinColumn(name = "idHospital")
     Hospital hospital;
+	
+	@OneToOne
+	@JoinColumn(name = "ideusuario") 
+	private Usuario usuario; 
 
 }

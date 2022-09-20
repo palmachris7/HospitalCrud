@@ -14,7 +14,9 @@
   <!-- Custom styles for this template -->
   <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
         <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
-  <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
 </head>
 
@@ -43,7 +45,6 @@
                 <div class="form-group">
                   <label for="nombre">Nombre</label>
                   <input type="hidden" th:field="*{idhospital}">
-                  <!-- <input type="hidden" th:field="*{imagen}"> -->
                   <input type="text" th:field="*{nombre}" class="form-control" id="nombre" name="nombre"
                     placeholder="Nombre del hospital" required="required">
                 </div>
@@ -88,7 +89,7 @@
                 <div class="form-group">
                   <label for="fecha">Fecha de Publicación</label>
                   <input type="text" class="form-control" name="fecha" th:field="*{fecharegistro}" id="fecha"
-                    placeholder="Fecha de Creacion" required="required">
+                    placeholder="Fecha de Cita" required="required">
                 </div>
               </div>
 
@@ -120,7 +121,7 @@
             </div>
             <hr>
 
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
           </form>
         </div>
       </div>
