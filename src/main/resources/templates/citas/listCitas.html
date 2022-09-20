@@ -29,7 +29,10 @@
       <div class="card">
         <h4 class="card-header"><strong>Listado de Citas</strong></h4>
         <div class="card-body">
-          <a class="btn btn-primary btn-block" th:href="@{/citas/create}" title="Crear cita"
+          <!-- <a class="btn btn-primary btn-block" th:href="@{/citas/create}" title="Crear cita"
+            role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva cita</a> -->
+
+            <a class="btn btn-primary btn-block" th:href="@{/citas/crearu/{username} (username=${usuario.username})}" title="Crear cita"
             role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva cita</a>
           <hr>
           <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
@@ -41,9 +44,9 @@
                 <th scope="col">Descripcion</th>
                 <th scope="col">Especialidad</th>
                 <th scope="col">Fecha</th>
-                <th scope="col">Estado</th>
                 <th scope="col">Hospital</th>
-                <th scope="col">Operaciones</th>
+                <th scope="col">Estado</th>
+                <th sec:authorize="hasAnyAuthority('ADMINISTRADOR')" scope="col">Operaciones</th>
               </tr>
             </thead>
             <tbody>
@@ -58,7 +61,7 @@
                   <span th:case="2" class="badge badge-danger">Cerrado</span>
                   <span th:case="3" class="badge badge-warning">En proceso</span>
                 </td>
-                <td>
+                <td sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
                   <a th:href="@{/citas/edit/{id} (id=${cita.idcita}) }" class="btn btn-success btn-sm" role="button"
                     title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
                   <a th:href="@{/citas/delete/{id} (id=${cita.idcita}) }" onclick="return confirm('¿Estas seguro?')"

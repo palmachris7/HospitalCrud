@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import palma.app.models.Cita;
-
+import palma.app.models.Hospital;
+import palma.app.models.Usuario;
 import palma.app.service.ICitaService;
 import palma.app.service.IHospitalService;
+import palma.app.service.IUsuariosService;
 
 
 @Controller
@@ -31,6 +35,9 @@ public class CitaController {
     private ICitaService serviceCita;
 	@Autowired
     private IHospitalService serviceHospital;
+	@Autowired
+    private IUsuariosService serviceUsuario;
+
 
 	
 
@@ -44,6 +51,20 @@ public class CitaController {
 
 	@GetMapping("/create")
 	public String crear(@ModelAttribute Cita cita) {		
+		return "citas/formCita";
+	}
+
+	@GetMapping("/crearu/{username}")
+	public String crearu(@PathVariable("username") String username , @ModelAttribute Cita cita) {	
+		Usuario usuario = serviceUsuario.buscarPorUsername(username);
+		cita.setUsuario(usuario);	
+		return "citas/formCita";
+	}
+
+	@GetMapping("/crear/{id}")
+	public String crearr(@PathVariable("id") int idHospital , @ModelAttribute Cita cita) {	
+		Hospital hospital = serviceHospital.buscarPorId(idHospital);
+		cita.setHospital(hospital);	
 		return "citas/formCita";
 	}
 
@@ -79,8 +100,10 @@ public class CitaController {
 
 	@ModelAttribute
 	public void setGenericos(Model model){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
 		model.addAttribute("hospitales", serviceHospital.buscarTodas());	
-			
+		model.addAttribute("usuario", serviceUsuario.buscarPorUsername(currentPrincipalName));	
 	}
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {

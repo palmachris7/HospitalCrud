@@ -1,11 +1,14 @@
 package palma.app.controllers;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.core.Authentication;
@@ -80,7 +83,9 @@ public class HomeController {
 		String pwdEncriptado = passwordEncoder.encode(pwdPlano); 
 		usuario.setPassword(pwdEncriptado);	
 		Perfil perfil = new Perfil();
-		usuario.setEstatus(1); 
+		usuario.setEstatus(1);
+    	Date date = new Date();  
+		usuario.setFecharegistro(date);
 		perfil.setIdperfil(2); 
 		usuario.agregar(perfil);
 		serviceUsuarios.guardar(usuario);	
@@ -129,6 +134,8 @@ public class HomeController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	    binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
 }

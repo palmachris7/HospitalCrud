@@ -56,7 +56,7 @@
                 title="Quiero sacar cita."><i class="fas fa-pencil" aria-hidden="true"></i>
                 Editar</a>
                 <a sec:authorize="isAuthenticated() and hasAnyAuthority('USUARIO')" class="btn btn-primary"
-                th:href="@{/solicitudes/create/{id} (id=${hospital.idhospital}) }" role="button"
+                th:href="@{/citas/crear/{id} (id=${hospital.idhospital})}" role="button"
                 title="Quiero sacar cita."><i class="fa-solid fa-check"></i>
                 Sacar cita</a>
             </div>

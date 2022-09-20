@@ -28,7 +28,7 @@
     <div class="container">
 
       <div class="card">
-        <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>
+        <h4 class="card-header"><strong>Datos de la cita:</strong></h4>
         <div class="card-body">
           <form th:action="@{/citas/save}" th:object="${cita}" method="post" enctype="multipart/form-data">
 
@@ -42,7 +42,7 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="nombre">Cita</label>
+                  <label for="nombre">Descripción:</label>
                   <input type="hidden" th:field="*{idcita}">
                   <input type="text" th:field="*{descita}" class="form-control" id="descita" name="descita"
                     placeholder="Cita" required="required">
@@ -50,7 +50,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="hospital">Hospital</label>
+                  <label for="hospital">Hospital:</label>
                   <select class="form-control" name="hospital" th:field="*{hospital.idhospital}" id="hospital">
                     <option th:each="hospital : ${hospitales}" th:value="${hospital.idhospital}"
                     th:text="${hospital.nombre}">
@@ -63,16 +63,15 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="fecha">Fecha de Publicación</label>
+                  <label for="fecha">Fecha de Publicación:</label>
                   <input type="text" class="form-control" name="fecha" th:field="*{fecharegistro}" id="fecha"
                     placeholder="Fecha de publicacion" required="required">
                 </div>
               </div>
-              <label sec:authorize="isAuthenticated() and hasAnyAuthority('ADMINISTRADOR')"for="estado">Estado:</label>
-
               <div sec:authorize="isAuthenticated() and hasAnyAuthority('ADMINISTRADOR')" class="col-md-4">
+                <label for="fecha">Estado: </label>
                 <div class="form-check">
-                  <label class="form-check-label" for="estado1"></label><br>
+      
                   <input class="form-check-input" type="radio" name="estado" th:field="*{estado}" id="estado" value="1">
                   <label class="form-check-label" for="destacado1">Abierto</label>
                 </div>
@@ -93,11 +92,12 @@
                 <div class="form-group">
                   <label for="especialidad">Especialidad</label>
                   <select class="form-control" name="especialidad" id="especialidad">
-                    <option th:text="*{especialidad}">Emergencia</option> 
+                    <option th:text="*{especialidad} ?: 'Seleccione especialidad'"selected hidden></option> 
+                    <option value="Emergencia">Emergencia</option> 
                     <option value="Medicina General">Medicina General</option>
                     <option value="Odontologia">Odontologia</option>
                     <option value="Oftalmologia">Oftalmologia</option>
-                    <option value="Pediatria">Pediatria</option>
+                    <option value="Pediatria">Pediatria</option> 
                     <option value="Cirugia">Cirugia</option>
                     <option  value="Cardiologia">Cardiologia</option>
                     <option value="Neumologia">Neumologia</option>

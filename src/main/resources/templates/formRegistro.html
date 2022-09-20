@@ -1,65 +1,88 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
 
-    <title>HospitalApp | Formulario de registro</title>
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
-        <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
+
+  <title>HospitalApp | Formulario de registro</title>
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+  <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
   <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <header th:insert="fragments/menu :: menu-principal"></header>
+  <header th:insert="fragments/menu :: menu-principal"></header>
 
-    <main role="main">     
-      <hr>
-      <div class="container"> 
 
+
+    <div class="container">
+      <section class="vh-100">
         <div class="card">
-          <h4 class="card-header"><strong>Formulario de registro</strong></h4>              
+          <h4 class="card-header"><strong>Formulario de registro</strong></h4>
           <div class="card-body">
-            <form th:action="@{/signup}" th:object="${usuario}" method="post">              
-              <div class="row"> 
-                <div class="col-md-6"> 
+            <form th:action="@{/signup}" th:object="${usuario}" method="post">
+              <div class="row">
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" th:field="*{username}" id="username" name="username" placeholder="Escriba su nombre de usuario" required="required">
+                    <label for="username">Nombres Completos:</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre"
+                      placeholder="Escriba su nombre" required="required">
                   </div>
                 </div>
-                <div class="col-md-6"> 
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" th:field="*{password}" id="password" name="password" placeholder="Escriba su clave de acceso" required="required">
+                    <label for="password">Correo Electronico:</label>
+                    <input type="email" class="form-control" th:field="*{email}" id="email" name="email"
+                      placeholder="Escriba su correo electrónico" required="required">
                   </div>
                 </div>
-              </div>                  
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" class="form-control" th:field="*{username}" id="username" name="username"
+                      placeholder="Escriba su nombre de usuario" required="required">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" class="form-control" th:field="*{password}" id="password" name="password"
+                      placeholder="Escriba su clave de acceso" required="required">
+                  </div>
+                </div>
+              </div>
+
               <hr>
-              <button type="submit" title="Quiero registrarme." class="btn btn-primary btn-block"><i class="fa-solid fa-circle-plus"></i> Registrarse</button> 
+              <button type="submit" title="Quiero registrarme." class="btn btn-primary btn-block"><i
+                  class="fa-solid fa-circle-plus"></i> Registrarse</button>
             </form>
-           
+
           </div>
         </div>
-       
-      </div> <!-- /container -->
 
-    </main>
+    </div> <!-- /container -->
+    </section>
 
-    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
 
-    <!-- Bootstrap core JavaScript
+  <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+  <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
-  </body>
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
 </html>
