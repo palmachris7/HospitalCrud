@@ -30,6 +30,9 @@
       <div class="card">
         <h4 class="card-header"><strong>Datos de la cita:</strong></h4>
         <div class="card-body">
+          <a class="btn btn-warning" th:href="@{/citas/index}" title="Regresar"
+          role="button"><i class="fa-solid fa-arrow-left"></i> Regresar</a>
+          <hr>
           <form th:action="@{/citas/save}" th:object="${cita}" method="post" enctype="multipart/form-data">
 
             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
@@ -117,7 +120,7 @@
 
             <hr>
            
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
           </form>
         </div>
       </div>
