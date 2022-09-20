@@ -27,13 +27,31 @@
     <hr>
     <div class="container">
       <div class="card">
-        <h4 class="card-header"><strong>Listado de Hospitales en Lima</strong></h4>
+        <h4 class="card-header mb-0 form-inline">
+        <strong>Listado de Hospitales</strong>&nbsp;
+          <form th:action="@{/hospitales/buscar}" th:object="${buscar}" method="get" class="form-inline mb-0 col-md-9">
+            <input id="custom" type="text" th:field="*{nombre}" class="form-control mb-0 col-md-4"
+                placeholder="Busque hospital">&nbsp;
+            <select th:field="*{sede.idsede}" class="custom-select custom-select mb-0" id="charstype">
+                <option th:value="${null}" selected>Seleccione una sede</option>
+                <option th:each="sede : ${sedes}" th:value="${sede.idsede}" th:text="${sede.descsede}">
+                </option>
+            </select>&nbsp;
+            <button type="submit" class="btn btn-primary mb-0"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+            
+        </form>
+        </h4>
+        
         <div class="card-body">
           <a class="btn btn-primary btn-block" th:href="@{/hospitales/create}" title="Crear nuevo hospital"
             role="button"><i class="fa-solid fa-plus"></i> Nuevo Hospital</a>
-          <hr>
-          <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
 
+       
+          <hr>
+        <small th:text="${cantidad}" class="text-primary"></small><small class="text-primary"> Hospitales en Total</small>
+
+          <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+         
           <table class="table table-hover">
             <thead class="thead-light">
               <tr>
@@ -44,7 +62,7 @@
                 <th scope="col"> Sede </th>
                 <th scope="col">Gerente</th>
                 <th scope="col">Condicion</th>
-                <th scope="col">Fecha de Registro</th>
+                <th scope="col">Fecha</th>
                 <th scope="col">Operaciones</th>
               </tr>
             </thead>
@@ -74,13 +92,15 @@
               </tr>
             </tbody>
           </table>
-          <nav th:if="${hospitales.totalPages > 2}" aria-label="Page navigation example">
+          <nav th:if="${hospitales.totalPages > 1}" aria-label="Page navigation example">
             <ul class="pagination">
-              <li class="page-item"><a th:href="@{/hospitales/indexPaginate(page=${hospitales.number - 1})}"
-                  class="page-link">Anterior</a></li>
-              <li class="page-item"><a th:href="@{/hospitales/indexPaginate(page=${hospitales.number + 1})}"
-                  class="page-link">Siguiente</a></li>
+              <li th:if="${hospitales.number!=0 }" class="page-item"><a th:href="@{/hospitales/indexPaginate(page=${hospitales.number - 1})}"
+                  class="page-link"><i class="fa-solid fa-angles-left"></i> Anterior</a></li>
+             
+              <li th:if="${hospitales.number<hospitales.totalPages-1 }"class="page-item"><a th:href="@{/hospitales/indexPaginate(page=${hospitales.number + 1})}"
+                  class="page-link">Siguiente <i class="fa-solid fa-angles-right"></i></a></li>
             </ul>
+         
           </nav>
 
         </div>

@@ -39,10 +39,10 @@
                        <a class="nav-link" th:href="@{/hospitales/indexPaginate}"><i class="fa-regular fa-hospital"></i> Hospitales</a>
                      </li>
                      <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
-                      <a class="nav-link" th:href="@{/citas/index}"><i class="fa-solid fa-calendar-check"></i> Solicitudes</a>
+                      <a class="nav-link" th:href="@{/citas/indexPaginate}"><i class="fa-solid fa-calendar-check"></i> Solicitudes</a>
                        </li>
                      <li class="nav-item" sec:authorize="hasAnyAuthority('USUARIO')">
-                        <a class="nav-link" th:href="@{/citas/index}" ><i class="fa-solid fa-calendar-check"></i> Citas</a>
+                        <a class="nav-link" th:href="@{/citas/indexPaginate}" ><i class="fa-solid fa-calendar-check"></i> Citas</a>
                      </li>
                      <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
                       <a class="nav-link" th:href="@{/usuarios/index}" ><i class="fa-solid fa-users"></i> Usuarios</a>
@@ -110,10 +110,7 @@
                 </div>
             </div>
         </div>
-       
-    
-
-        </div>
+        
     </div>
     </main>
     <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>

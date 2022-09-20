@@ -30,7 +30,7 @@
       <div class="card">
         <h4 class="card-header"><strong>Datos de la cita:</strong></h4>
         <div class="card-body">
-          <a class="btn btn-warning" th:href="@{/citas/index}" title="Regresar"
+          <a class="btn btn-warning" th:href="@{/citas/indexPaginate}" title="Regresar"
           role="button"><i class="fa-solid fa-arrow-left"></i> Regresar</a>
           <hr>
           <form th:action="@{/citas/save}" th:object="${cita}" method="post" enctype="multipart/form-data">
@@ -48,7 +48,7 @@
                   <label for="nombre">Descripción:</label>
                   <input type="hidden" th:field="*{idcita}">
                   <input type="text" th:field="*{descita}" class="form-control" id="descita" name="descita"
-                    placeholder="Cita" required="required">
+                    placeholder="Descripción de la cita" required="required">
                 </div>
               </div>
               <div class="col-md-4">

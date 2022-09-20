@@ -18,7 +18,7 @@ import lombok.Data;
 @Table(name = "CITA")
 public class Cita {
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private Integer idcita;
 	private String descita;
 	private String especialidad;

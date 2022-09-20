@@ -12,10 +12,10 @@
 			   <a class="nav-link" th:href="@{/hospitales/indexPaginate}"><i class="fa-regular fa-hospital"></i> Hospitales</a>
 			 </li>
 			 <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
-			  <a class="nav-link" th:href="@{/citas/index}"><i class="fa-solid fa-calendar-check"></i> Solicitudes</a>
+			  <a class="nav-link" th:href="@{/citas/indexPaginate}"><i class="fa-solid fa-calendar-check"></i> Solicitudes</a>
 			   </li>
 			 <li class="nav-item" sec:authorize="hasAnyAuthority('USUARIO')">
-				<a class="nav-link" th:href="@{/citas/index}" ><i class="fa-solid fa-calendar-check"></i> Citas</a>
+				<a class="nav-link" th:href="@{/citas/indexPaginate}" ><i class="fa-solid fa-calendar-check"></i> Citas</a>
 			 </li>
 			 <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
 			  <a class="nav-link" th:href="@{/usuarios/index}" ><i class="fa-solid fa-users"></i> Usuarios</a>
@@ -29,7 +29,7 @@
 			  <a class="btn btn-primary" th:href="@{/signup}"><i class="fa-solid fa-user-plus"></i> Registrarse </a>
 		  </div>	    
 		  <div sec:authorize="isAuthenticated()">
-			  <span class="text-light">Bienvenido:</span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;
+			  <span class="text-primary">Bienvenido:</span>&nbsp;<span class="text-primary" sec:authentication="name"></span>&nbsp;
 			  <a class="btn btn-primary" th:href="@{/logout}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Salir</a>
 		  </div>    
 		</div>

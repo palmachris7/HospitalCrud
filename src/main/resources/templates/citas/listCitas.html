@@ -27,7 +27,7 @@
     <hr>
     <div class="container">
       <div class="card">
-        <h4 class="card-header"><strong>Listado de Citas</strong></h4>
+        <h4 class="card-header form-inline"><strong>Listado de Citas</strong></h4>
         <div class="card-body">
           <!-- <a class="btn btn-primary btn-block" th:href="@{/citas/create}" title="Crear cita"
             role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva cita</a> -->
@@ -35,6 +35,7 @@
             <a class="btn btn-primary btn-block" th:href="@{/citas/crearu/{username} (username=${usuario.username})}" title="Crear cita"
             role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva cita</a>
           <hr>
+          <small th:text="${cantidad}" class="text-primary"></small><small class="text-primary"> Citas en Total</small>
           <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
 
           <table class="table table-hover">
@@ -71,7 +72,16 @@
               </tr>
             </tbody>
           </table>
-        
+          <nav th:if="${citas.totalPages > 1}" aria-label="Page navigation example">
+            <ul class="pagination">
+              <li th:if="${citas.number!=0 }" class="page-item"><a th:href="@{/citas/indexPaginate(page=${citas.number - 1})}"
+                  class="page-link"><i class="fa-solid fa-angles-left"></i> Anterior</a></li>
+             
+              <li th:if="${citas.number<citas.totalPages-1 }"class="page-item"><a th:href="@{/citas/indexPaginate(page=${citas.number + 1})}"
+                  class="page-link">Siguiente <i class="fa-solid fa-angles-right"></i></a></li>
+            </ul>
+         
+          </nav>
 
         </div>
       </div>

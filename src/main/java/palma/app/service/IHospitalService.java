@@ -15,5 +15,6 @@ public interface IHospitalService {
 	List<Hospital> buscarTodas();
 	Hospital buscarPorId(Integer idGerente);
 	Page<Hospital> buscarTodas(Pageable page);
+	Page<Hospital> buscarPageByExample(Pageable page,Example<Hospital> example);
 	List<Hospital> buscarByExample(Example<Hospital> example);
 }

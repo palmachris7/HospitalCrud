@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+
 import palma.app.models.Usuario;
 
 public interface UsuariosRepository extends JpaRepository<Usuario, Integer>{
@@ -21,5 +22,8 @@ public interface UsuariosRepository extends JpaRepository<Usuario, Integer>{
 	@Modifying
     @Query("UPDATE Usuario SET estatus=1 WHERE idusuario = :paramIdUsuario")
     int unlock(@Param("paramIdUsuario") int idUsuario);
+
+
+	
 	
 } 

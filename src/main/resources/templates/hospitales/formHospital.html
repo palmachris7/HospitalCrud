@@ -102,7 +102,7 @@
                 <div class="form-group">
                   <label for="antiguedad">Antiguedad</label>
                   <input type="text" class="form-control" name="antiguedad" th:field="*{antiguedad}" id="antiguedad"
-                    placeholder="Antiguedad." required="required">
+                    placeholder="Antiguedad" required="required">
                 </div>
               </div>
               <div class="col-md-3">
@@ -122,7 +122,20 @@
                 </div>
               </div>
             </div>
-            <hr>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="archivoImagen">Imagen</label>
+                  <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen">
+                </div> 
+              </div>
+                <div class="col-md-3">
+                  <label for="imagen">Previsualización</label>
+                  <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=*{imagen}) } "
+                    alt="Generic placeholder image" width="150" height="100">
+                </div>
+              </div>
+            </div>
             <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
           </form>
         </div>

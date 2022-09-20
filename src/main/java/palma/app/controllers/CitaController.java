@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,6 +51,13 @@ public class CitaController {
 		return "citas/listCitas";
 	}
 
+	@GetMapping("/indexPaginate")
+	public String mostrarIndexPaginado(Model model, Pageable page) {
+		Page<Cita> lista = serviceCita.buscarTodas(page);
+		model.addAttribute("citas", lista);
+		return "citas/listCitas";
+	}
+
 	@GetMapping("/create")
 	public String crear(@ModelAttribute Cita cita) {		
 		return "citas/formCita";
@@ -61,9 +70,11 @@ public class CitaController {
 		return "citas/formCita";
 	}
 
-	@GetMapping("/crear/{id}")
-	public String crearr(@PathVariable("id") int idHospital , @ModelAttribute Cita cita) {	
+	@GetMapping("/crear/{id}/{username}")
+	public String crearr(@PathVariable("id") int idHospital, @PathVariable("username") String username , @ModelAttribute Cita cita) {	
+		Usuario usuario = serviceUsuario.buscarPorUsername(username);
 		Hospital hospital = serviceHospital.buscarPorId(idHospital);
+		cita.setUsuario(usuario);
 		cita.setHospital(hospital);	
 		return "citas/formCita";
 	}
@@ -103,7 +114,8 @@ public class CitaController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 		model.addAttribute("hospitales", serviceHospital.buscarTodas());	
-		model.addAttribute("usuario", serviceUsuario.buscarPorUsername(currentPrincipalName));	
+		model.addAttribute("usuario", serviceUsuario.buscarPorUsername(currentPrincipalName));
+		model.addAttribute("cantidad", serviceCita.buscarTodas().size());	
 	}
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {

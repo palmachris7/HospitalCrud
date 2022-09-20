@@ -55,8 +55,8 @@
                 th:href="@{/hospitales/edit/{id} (id=${hospital.idhospital}) }" role="button"
                 title="Quiero sacar cita."><i class="fas fa-pencil" aria-hidden="true"></i>
                 Editar</a>
-                <a sec:authorize="isAuthenticated() and hasAnyAuthority('USUARIO')" class="btn btn-primary"
-                th:href="@{/citas/crear/{id} (id=${hospital.idhospital})}" role="button"
+                <a sec:authorize="isAuthenticated()" class="btn btn-primary"
+                th:href="@{/citas/crear/{id}/{username} (id=${hospital.idhospital},username=${usuario.username})}" role="button"
                 title="Quiero sacar cita."><i class="fa-solid fa-check"></i>
                 Sacar cita</a>
             </div>

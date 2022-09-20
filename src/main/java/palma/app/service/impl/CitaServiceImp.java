@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import palma.app.models.Cita;
@@ -45,6 +47,11 @@ public class CitaServiceImp implements ICitaService {
     @Override
     public List<Cita> buscarTodas() {
         return citaRepo.findAll();
+    }
+
+    @Override
+    public Page<Cita> buscarTodas(Pageable page) {
+        return citaRepo.findAll(page);
     }
 
 

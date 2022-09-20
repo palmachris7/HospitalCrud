@@ -29,16 +29,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 						"where username = ?");
 	}
 
-
-
-	/**
-	 * Personalizamos el Acceso a las URLs de la aplicación
-	 */
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 
-				// Los recursos estáticos no requieren autenticación
 				.antMatchers(
 						"/bootstrap/**",
 						"/images/**",
@@ -46,7 +41,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 						"/logos/**")
 				.permitAll()
 
-				// Las vistas públicas no requieren autenticación
 				.antMatchers("/",
 						"/login",
 						"/signup",
@@ -56,30 +50,18 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 						"/hospitales/view/**")
 				.permitAll()
 
-				// Asignar permisos a URLs por ROLES
-				.antMatchers("/solicitudes/create/**",
-						"/solicitudes/save/**")
-				.hasAuthority("USUARIO")
-				// "/solicitudes/save/**").hasAuthority("Usuario")
+				.antMatchers("/citas/create/**").hasAuthority("USUARIO")
+				.antMatchers("/citas/**").hasAnyAuthority("USUARIO", "ADMINISTRADOR")
+				.antMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR")
+				.antMatchers("/hospitales/**").hasAnyAuthority("ADMINISTRADOR")
 
-				.antMatchers("/solicitudes/**").hasAnyAuthority("USUARIO", "ADMINISTRADOR")
-				.antMatchers("/vacantes/**").hasAnyAuthority("Supervisor", "ADMINISTRADOR")
-				.antMatchers("/categorias/**").hasAnyAuthority("Supervisor", "ADMINISTRADOR")
-				.antMatchers("/Usuarios/**").hasAnyAuthority("ADMINISTRADOR")
-
-				// Todas las demás URLs de la Aplicación requieren autenticación
 				.anyRequest().authenticated()
-				// El formulario de Login no requiere autenticacion
+
 				.and().formLogin().loginPage("/login").permitAll()
 				.and().logout().permitAll();
 	}
 
-	/**
-	 * Implementación de Spring Security que encripta passwords con el algoritmo
-	 * Bcrypt
-	 * 
-	 * @return
-	 */
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

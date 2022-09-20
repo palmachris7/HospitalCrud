@@ -54,5 +54,10 @@ public class HospitalServiceImp implements IHospitalService {
     public List<Hospital> buscarByExample(Example<Hospital> example) {
         return hospirepo.findAll(example);
     }
+
+    @Override
+    public Page<Hospital> buscarPageByExample(Pageable page, Example<Hospital> example) {
+        return hospirepo.findAll(example,page);
+    }
     
 }

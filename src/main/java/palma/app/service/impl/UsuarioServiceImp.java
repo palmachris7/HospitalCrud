@@ -62,5 +62,6 @@ public class UsuarioServiceImp implements IUsuariosService {
         int rows = usuariosRepo.unlock(idUsuario);
 		return rows;
     }
+
     
 }
