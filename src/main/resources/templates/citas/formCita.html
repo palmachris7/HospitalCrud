@@ -33,7 +33,7 @@
           <a class="btn btn-warning" th:href="@{/citas/indexPaginate}" title="Regresar"
           role="button"><i class="fa-solid fa-arrow-left"></i> Regresar</a>
           <hr>
-          <form th:action="@{/citas/save}" th:object="${cita}" method="post" enctype="multipart/form-data">
+          <form th:action="@{/citas/save}" th:object="${cita}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
 
             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
               Por favor corrija los siguientes errores:
@@ -49,6 +49,12 @@
                   <input type="hidden" th:field="*{idcita}">
                   <input type="text" th:field="*{descita}" class="form-control" id="descita" name="descita"
                     placeholder="Descripción de la cita" required="required">
+                    <div class="valid-feedback">
+                      ¡Se ve bien!
+                    </div>
+                    <div class="invalid-feedback"> 
+                      Por favor ingrese la Descripción
+                    </div>
                 </div>
               </div>
               <div class="col-md-4">
@@ -69,6 +75,12 @@
                   <label for="fecha">Fecha de Publicación:</label>
                   <input type="text" class="form-control" name="fecha" th:field="*{fecharegistro}" id="fecha"
                     placeholder="Fecha de publicacion" required="required">
+                    <div class="valid-feedback">
+                      ¡Se ve bien!
+                    </div>
+                    <div class="invalid-feedback">
+                      Por favor ingrese la fecha
+                    </div>
                 </div>
               </div>
               <div sec:authorize="isAuthenticated() and hasAnyAuthority('ADMINISTRADOR')" class="col-md-4">
@@ -137,6 +149,7 @@
   <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script th:src="@{/tinymce/tinymce.min.js}"></script>
+  <script th:src="@{/bootstrap/js/validaciones.js}"></script>
   <script>
     $(function () {
       $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });

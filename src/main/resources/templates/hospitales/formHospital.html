@@ -34,7 +34,7 @@
           <a class="btn btn-warning" th:href="@{/hospitales/indexPaginate}" title="Regresar"
           role="button"><i class="fa-solid fa-arrow-left"></i> Regresar</a>
           <hr>
-          <form th:action="@{/hospitales/save}" th:object="${hospital}" method="post" enctype="multipart/form-data">
+          <form th:action="@{/hospitales/save}" th:object="${hospital}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
 
             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
               Por favor corrija los siguientes errores:
@@ -50,6 +50,12 @@
                   <input type="hidden" th:field="*{idhospital}">
                   <input type="text" th:field="*{nombre}" class="form-control" id="nombre" name="nombre"
                     placeholder="Nombre del hospital" required="required">
+                    <div class="valid-feedback">
+                      ¡Se ve bien!
+                    </div>
+                    <div class="invalid-feedback">
+                      Por favor ingrese el nombre del hospital
+                    </div>
                 </div>
               </div>
               <div class="col-md-6">
@@ -57,6 +63,12 @@
                   <label for="detalles">Detalles</label>
                   <input type="text" th:field="*{detalles}" class="form-control" id="detalles" name="detalles" placeholder="Detalles"
                     required="required">
+                    <div class="valid-feedback">
+                      ¡Se ve bien!
+                    </div>
+                    <div class="invalid-feedback">
+                      Por favor ingrese los detalles
+                    </div>
                 </div>
               </div>
             </div>
@@ -93,6 +105,12 @@
                   <label for="fecha">Fecha de Publicación</label>
                   <input type="text" class="form-control" name="fecha" th:field="*{fecharegistro}" id="fecha"
                     placeholder="Fecha de Cita" required="required">
+                    <div class="valid-feedback">
+                      ¡Se ve bien!
+                    </div>
+                    <div class="invalid-feedback">
+                      Por favor ingrese la fecha
+                    </div>
                 </div>
               </div>
 
@@ -101,15 +119,27 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="antiguedad">Antiguedad</label>
-                  <input type="text" class="form-control" name="antiguedad" th:field="*{antiguedad}" id="antiguedad"
+                  <input type="number" class="form-control" name="antiguedad" th:field="*{antiguedad}" id="antiguedad"
                     placeholder="Antiguedad" required="required">
+                    <div class="valid-feedback">
+                      ¡Se ve bien!
+                    </div>
+                    <div class="invalid-feedback">
+                      Por favor ingrese la antiguedad del hospital
+                    </div>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="condicion">Area construida</label>
-                  <input type="text" th:field="*{area}" class="form-control" id="area" name="area" placeholder="Area"
+                  <input type="number" th:field="*{area}" class="form-control" id="area" name="area" placeholder="Area"
                     required="required">
+                    <div class="valid-feedback">
+                      ¡Se ve bien!
+                    </div>
+                    <div class="invalid-feedback">
+                      Por favor ingrese el area del hospital
+                    </div>
                 </div>
               </div>
               <div class="col-md-3">
@@ -153,6 +183,7 @@
   <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script th:src="@{/tinymce/tinymce.min.js}"></script>
+  <script th:src="@{/bootstrap/js/validaciones.js}"></script>
   <script>
     $(function () {
       $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });
