@@ -185,3 +185,16 @@ INSERT INTO SYS.CITA (IDCITA, DESCITA, ESPECIALIDAD, ESTADO, FECHAREGISTRO, ID_H
 INSERT INTO SYS.CITA (IDCITA, DESCITA, ESPECIALIDAD, ESTADO, FECHAREGISTRO, ID_HOSPITAL, IDEUSUARIO) VALUES (71, 'Cita Odontologica', 'Odontologia', 1, TO_TIMESTAMP('2022-09-16 00:00:00.000000', 'YYYY-MM-DD HH24:MI:SS.FF6'), 1, 41);
 INSERT INTO SYS.CITA (IDCITA, DESCITA, ESPECIALIDAD, ESTADO, FECHAREGISTRO, ID_HOSPITAL, IDEUSUARIO) VALUES (72, 'Cita Oftalmologica', 'Oftalmologia', 1, TO_TIMESTAMP('2022-09-15 00:00:00.000000', 'YYYY-MM-DD HH24:MI:SS.FF6'), 2, 41);
 INSERT INTO SYS.CITA (IDCITA, DESCITA, ESPECIALIDAD, ESTADO, FECHAREGISTRO, ID_HOSPITAL, IDEUSUARIO) VALUES (73, 'Cita Cirugia Tarde', 'Cirugia', 2, TO_TIMESTAMP('2022-09-17 00:00:00.000000', 'YYYY-MM-DD HH24:MI:SS.FF6'), 3, 41);
+
+
+/*
+drop table CONDICION cascade constraints;
+drop table SEDE cascade constraints;
+drop table DISTRITO cascade constraints;
+drop table GERENTE cascade constraints;
+drop table USUARIO cascade constraints;
+drop table PROVINCIA cascade constraints;
+drop table PERFIL cascade constraints;
+drop table USUARIO_PERFIL cascade constraints;
+drop table HOSPITAL cascade constraints;
+drop table CITA cascade constraints;*/
