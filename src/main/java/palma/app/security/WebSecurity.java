@@ -29,7 +29,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 						"where username = ?");
 	}
 
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
@@ -37,8 +36,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 				.antMatchers(
 						"/bootstrap/**",
 						"/images/**",
-						"/tinymce/**",
-						"/logos/**")
+						"/tinymce/**")
 				.permitAll()
 
 				.antMatchers("/",
@@ -61,7 +59,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 				.and().logout().permitAll();
 	}
 
-	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
