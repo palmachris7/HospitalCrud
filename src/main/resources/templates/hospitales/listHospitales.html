@@ -75,7 +75,7 @@
                 <td th:text="${hospital.sede.descsede}"></td>
                 <td th:text="${hospital.gerente.descgerente}"></td>
                 <td th:switch="${hospital.condicion.idcondicion}">
-                  <span th:case="1" class="badge badge-success">En funcionamiento</span>
+                  <span th:case="1" class="badge badge-success">Funcionando</span>
                   <span th:case="2" class="badge badge-danger">Cerrado</span>
                   <span th:case="3" class="badge badge-warning">En Limpieza</span>
                 </td>
