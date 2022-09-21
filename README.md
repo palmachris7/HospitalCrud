@@ -6,4 +6,4 @@
 | Usuario:      |   admin       |  user |
 | Contraseña:   |   admin       |  user |
 
-[Base de datos](../app/src/main/resources/db.sql "Base de datos")
+[Base de datos](../src/main/resources/db.sql "Base de datos")
