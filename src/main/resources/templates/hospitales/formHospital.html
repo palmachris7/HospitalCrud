@@ -120,7 +120,7 @@
                 <div class="form-group">
                   <label for="antiguedad">Antiguedad</label>
                   <input type="number" class="form-control" name="antiguedad" th:field="*{antiguedad}" id="antiguedad"
-                    placeholder="Antiguedad" required="required">
+                    placeholder="Años" required="required">
                     <div class="valid-feedback">
                       ¡Se ve bien!
                     </div>
@@ -142,7 +142,7 @@
                     </div>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <div class="form-group">
                   <label for="condicion">Condicion</label>
                   <select class="form-control" name="condicion" th:field="*{condicion.idcondicion}" id="condicion">
@@ -157,7 +157,7 @@
                   <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen">
                 </div> 
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <label for="imagen">Previsualización</label>
                 <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=*{imagen}) } "
                   alt="Generic placeholder image" width="150" height="100">
@@ -191,13 +191,6 @@
       $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });
     }
     );
-
-    // tinymce.init({
-    //   selector: '#detalles',
-    //   plugins: "textcolor, table lists code",
-    //   toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
-    //                 | bullist numlist outdent indent | forecolor backcolor table code"
-    // });
 
   </script>
 </body>
