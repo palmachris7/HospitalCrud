@@ -116,7 +116,7 @@
 
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <div class="form-group">
                   <label for="antiguedad">Antiguedad</label>
                   <input type="number" class="form-control" name="antiguedad" th:field="*{antiguedad}" id="antiguedad"
@@ -125,11 +125,11 @@
                       ¡Se ve bien!
                     </div>
                     <div class="invalid-feedback">
-                      Por favor ingrese la antiguedad del hospital
+                      Por favor ingrese la antiguedad
                     </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <div class="form-group">
                   <label for="condicion">Area construida</label>
                   <input type="number" th:field="*{area}" class="form-control" id="area" name="area" placeholder="Area"
@@ -142,7 +142,7 @@
                     </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <div class="form-group">
                   <label for="condicion">Condicion</label>
                   <select class="form-control" name="condicion" th:field="*{condicion.idcondicion}" id="condicion">
@@ -151,19 +151,21 @@
                   </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="archivoImagen">Imagen</label>
                   <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen">
                 </div> 
               </div>
-                <div class="col-md-3">
-                  <label for="imagen">Previsualización</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=*{imagen}) } "
-                    alt="Generic placeholder image" width="150" height="100">
-                </div>
+              <div class="col-md-3">
+                <label for="imagen">Previsualización</label>
+                <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=*{imagen}) } "
+                  alt="Generic placeholder image" width="150" height="100">
+              </div>
+            </div>
+            <div class="row">
+            
+              
               </div>
             </div>
             <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>

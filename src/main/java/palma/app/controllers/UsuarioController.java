@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import palma.app.models.Usuario;
 import palma.app.service.IUsuariosService;
 
@@ -25,6 +26,7 @@ public class UsuarioController {
 	public String mostrarIndex(Model model) {
     	List<Usuario> lista = serviceUsuarios.buscarRegistrados();
     	model.addAttribute("usuarios", lista);
+		model.addAttribute("cantidad",serviceUsuarios.buscarTodos().size());
 		return "usuarios/listUsuarios";
 	}
     

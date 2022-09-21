@@ -106,7 +106,7 @@ public class CitaController {
 	public String eliminar(@PathVariable("id") int idCita, RedirectAttributes attributes) {
 		serviceCita.eliminar(idCita);
 		attributes.addFlashAttribute("msg", "La cita fue eliminada!.");
-		return "redirect:/citas/index";
+		return "redirect:/citas/indexPaginate";
 	}
 
 	@ModelAttribute
