@@ -1,5 +1,5 @@
 # HospitalCrud
-##Aplicacion de hospitales desarrollada con SpringBoot y Thymeleaf
+## Aplicacion de hospitales desarrollada con SpringBoot y Thymeleaf
 
 | DATOS        | ADMINISTRADOR | USER  |
 | ------------- |:-------------:| -----:|
