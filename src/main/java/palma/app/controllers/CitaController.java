@@ -92,7 +92,7 @@ public class CitaController {
 		serviceCita.guardar(cita);
 		attributes.addFlashAttribute("msg", "Los datos de la cita fueron guardados!");
 	
-		return "redirect:/citas/index";		
+		return "redirect:/citas/indexPaginate";		
 	}
 	
 	@GetMapping("/edit/{id}")
