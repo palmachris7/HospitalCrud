@@ -52,31 +52,28 @@
                 <td th:text="${usuario.estatus == 1 ? 'Activo' : 'Bloqueado' }">Activo</td>
 
                 <td>
-                  <a th:href="@{/usuarios/delete/{id} (id=${usuario.idusuario}) }" onclick="return confirm('¿Estas seguro?')"
+                  <a th:href="@{/usuarios/delete/{id} (id=${usuario.idusuario}) }" id="delete"
                     class="btn btn-danger btn-sm" role="button" title="Eliminar"><i class="fas fa-trash"
                       aria-hidden="true"></i></a>
  
                   <span th:switch="${usuario.estatus}">
-
                     <a th:case="'1'" th:href="@{/usuarios/lock/{id} (id=${usuario.idusuario}) }"
-                      onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-outline-warning btn-sm"
+                      id="bloquear1" class="btn btn-outline-warning btn-sm"
                       role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-unlock"
                         aria-hidden="true"></i></a>
 
                     <a th:case="'0'" th:href="@{/usuarios/unlock/{id} (id=${usuario.idusuario}) }"
-                      onclick="return confirm('¿Desea desbloquear el usuario?')" class="btn btn-warning btn-sm"
+                     id="bloquear0" class="btn btn-warning btn-sm"
                       role="button" title="Permitir el acceso al sistema a este usuario."><i class="fas fa-lock"
                         aria-hidden="true"></i></a>
-
                   </span>
 
                 </td>
               </tr>
-
             </tbody>
           </table>
          <!-- Modal eliminar -->
-         <!-- <div class="modal fade bd-example-modal-sm" id="eliminar" tabindex="-1" role="dialog"
+         <div class="modal fade bd-example-modal-sm" id="modalEliminar" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
            <div class="modal-content">
@@ -90,15 +87,16 @@
                Estas seguro de eliminar al Usuario?
              </div>
              <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-               <a class="btn btn-danger btn-sm" role="button" title="Eliminar">Eliminar
+               <a type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Cancelar</a>
+               <a href="" id="delref" class="btn btn-danger btn-sm" role="button" title="Eliminar">Eliminar
                </a>
              </div>
            </div>
          </div>
-       </div> -->
+       </div> 
        <!-- Modal eliminar -->
 
+         
         </div>
       </div>
     </div> <!-- /container -->
@@ -112,6 +110,7 @@
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+  <script th:src="@{/bootstrap/js/modal.js}"></script>
 </body>
 
 </html>

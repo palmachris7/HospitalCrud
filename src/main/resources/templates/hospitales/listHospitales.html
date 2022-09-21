@@ -85,13 +85,38 @@
                 <td>
                   <a th:href="@{/hospitales/edit/{id} (id=${hospital.idhospital}) }" class="btn btn-success btn-sm"
                     role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+
                   <a th:href="@{/hospitales/delete/{id} (id=${hospital.idhospital}) }"
-                    onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button"
+                  id="deleteh"class="btn btn-danger btn-sm" role="button"
                     title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                 </td>
               </tr>
             </tbody>
           </table>
+              <!-- Modal eliminar -->
+         <div class="modal fade bd-example-modal-sm" id="modalEliminarH" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+               Estas seguro de eliminar el Hospital?
+             </div>
+             <div class="modal-footer">
+               <a type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Cancelar</a>
+               <a href="" id="delref" class="btn btn-danger btn-sm" role="button" title="Eliminar">Eliminar
+               </a>
+             </div>
+           </div>
+         </div>
+       </div> 
+       <!-- Modal eliminar -->
+
           <nav th:if="${hospitales.totalPages > 1}" aria-label="Page navigation example">
             <ul class="pagination">
               <li th:if="${hospitales.number!=0 }" class="page-item"><a th:href="@{/hospitales/indexPaginate(page=${hospitales.number - 1})}"
@@ -116,6 +141,7 @@
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+  <script th:src="@{/bootstrap/js/modal.js}"></script>
 </body>
 
 </html>

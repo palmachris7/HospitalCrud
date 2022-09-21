@@ -13,10 +13,10 @@
   <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
-        <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
-<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  <link th:href="@{/bootstrap/css/home.css}" rel="stylesheet">
+  <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body>
@@ -32,8 +32,8 @@
           <!-- <a class="btn btn-primary btn-block" th:href="@{/citas/create}" title="Crear cita"
             role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva cita</a> -->
 
-            <a class="btn btn-primary btn-block" th:href="@{/citas/crearu/{username} (username=${usuario.username})}" title="Crear cita"
-            role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva cita</a>
+          <a class="btn btn-primary btn-block" th:href="@{/citas/crearu/{username} (username=${usuario.username})}"
+            title="Crear cita" role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva cita</a>
           <hr>
           <small th:text="${cantidad}" class="text-primary"></small><small class="text-primary"> Citas en Total</small>
           <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
@@ -65,27 +65,59 @@
                 <td sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
                   <a th:href="@{/citas/edit/{id} (id=${cita.idcita}) }" class="btn btn-success btn-sm" role="button"
                     title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                  <a th:href="@{/citas/delete/{id} (id=${cita.idcita}) }" onclick="return confirm('¿Estas seguro?')"
-                    class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash"
-                      aria-hidden="true"></i></a>
+
+                  <a th:href="@{/citas/delete/{id} (id=${cita.idcita}) }" id="deletec" class="btn btn-danger btn-sm"
+                    role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                 </td>
               </tr>
             </tbody>
           </table>
+
+
+
+
           <nav th:if="${citas.totalPages > 1}" aria-label="Page navigation example">
             <ul class="pagination">
-              <li th:if="${citas.number!=0 }" class="page-item"><a th:href="@{/citas/indexPaginate(page=${citas.number - 1})}"
-                  class="page-link"><i class="fa-solid fa-angles-left"></i> Anterior</a></li>
-             
-              <li th:if="${citas.number<citas.totalPages-1 }"class="page-item"><a th:href="@{/citas/indexPaginate(page=${citas.number + 1})}"
-                  class="page-link">Siguiente <i class="fa-solid fa-angles-right"></i></a></li>
+              <li th:if="${citas.number!=0 }" class="page-item"><a
+                  th:href="@{/citas/indexPaginate(page=${citas.number - 1})}" class="page-link"><i
+                    class="fa-solid fa-angles-left"></i> Anterior</a></li>
+
+              <li th:if="${citas.number<citas.totalPages-1 }" class="page-item"><a
+                  th:href="@{/citas/indexPaginate(page=${citas.number + 1})}" class="page-link">Siguiente <i
+                    class="fa-solid fa-angles-right"></i></a></li>
             </ul>
-         
+
           </nav>
 
         </div>
       </div>
-    </div> 
+    </div>
+
+    <!-- Modal eliminar -->
+    <div class="modal fade bd-example-modal-sm" id="modalEliminarC" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Cerrar Sesion</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Estas seguro de eliminar la Cita?
+          </div>
+          <div class="modal-footer">
+            <a type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Cancelar</a>
+            <a href="" id="delref" class="btn btn-danger btn-sm" role="button" title="Eliminar">Eliminar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal eliminar -->
+
+
 
   </main>
 
@@ -96,6 +128,7 @@
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+  <script th:src="@{/bootstrap/js/modal.js}"></script>
 </body>
 
 </html>
